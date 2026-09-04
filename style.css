@@ -3,7 +3,7 @@ Theme Name: Moyu Glass
 Theme URI: https://www.moyu.loan/
 Author: Moyu
 Description: 夕阳晚霞玻璃态个人博客主题。
-Version: 1.12.0
+Version: 1.13.0
 Requires at least: 6.0
 Requires PHP: 7.4
 Text Domain: moyu-glass
@@ -42,18 +42,38 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
   z-index: 0;
   top: 0;
   left: 0;
-  width: 260px;
-  height: 260px;
+  width: 420px;
+  height: 420px;
   border-radius: 50%;
-  background: rgba(245, 176, 83, .16);
-  filter: blur(72px);
+  background: radial-gradient(circle, rgba(255,226,153,.34) 0 4%, rgba(229,163,79,.24) 18%, rgba(20,198,255,.13) 42%, transparent 68%);
+  filter: blur(42px) saturate(1.35);
   opacity: 0;
   pointer-events: none;
-  transform: translate(calc(var(--glow-x, -300px) - 130px), calc(var(--glow-y, -300px) - 130px));
-  transition: transform .14s ease-out, opacity .25s ease;
+  mix-blend-mode: screen;
+  transform: translate(calc(var(--glow-x, -500px) - 210px), calc(var(--glow-y, -500px) - 210px)) scale(calc(.9 + var(--glow-energy, 0) * .16));
+  transition: transform .08s ease-out, opacity .25s ease;
   content: "";
 }
-.moyu-home.has-pointer-glow::before { opacity: 1; }
+.moyu-home::after {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(from 18deg, rgba(255,197,91,.95) 0 5deg, transparent 5deg 22deg, rgba(30,205,255,.8) 22deg 25deg, transparent 25deg 48deg);
+  filter: drop-shadow(0 0 8px rgba(229,163,79,.8)) drop-shadow(0 0 18px rgba(30,205,255,.45));
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(calc(var(--glow-x, -300px) - 75px), calc(var(--glow-y, -300px) - 75px)) scale(calc(.82 + var(--glow-energy, 0) * .22));
+  transition: transform .16s cubic-bezier(.2,.8,.2,1), opacity .2s ease;
+  content: "";
+  -webkit-mask: radial-gradient(circle, transparent 0 42%, #000 44% 48%, transparent 50% 61%, #000 63% 66%, transparent 68%);
+  mask: radial-gradient(circle, transparent 0 42%, #000 44% 48%, transparent 50% 61%, #000 63% 66%, transparent 68%);
+}
+.moyu-home.has-pointer-glow::before { opacity: calc(.72 + var(--glow-energy, 0) * .28); }
+.moyu-home.has-pointer-glow::after { opacity: calc(.55 + var(--glow-energy, 0) * .4); }
 .moyu-home > * { position: relative; z-index: 1; }
 .moyu-header {
   position: sticky;
@@ -210,5 +230,5 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .moyu-thumb img { transition: none; }
-  .moyu-home::before { display: none; }
+  .moyu-home::before, .moyu-home::after { display: none; }
 }
