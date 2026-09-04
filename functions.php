@@ -41,6 +41,16 @@ function moyu_glass_archive_size(WP_Query $query): void
 }
 add_action('pre_get_posts', 'moyu_glass_archive_size');
 
+function moyu_glass_count_page_view(): void
+{
+    if (is_admin() || is_preview() || is_feed() || wp_doing_ajax() || wp_doing_cron() || current_user_can('manage_options')) {
+        return;
+    }
+
+    update_option('moyu_glass_page_views', (int) get_option('moyu_glass_page_views', 0) + 1, false);
+}
+add_action('template_redirect', 'moyu_glass_count_page_view');
+
 function moyu_glass_reading_minutes(?int $post_id = null): int
 {
     $content = wp_strip_all_tags(get_post_field('post_content', $post_id ?: get_the_ID()));
@@ -94,6 +104,18 @@ function moyu_glass_customize(WP_Customize_Manager $customizer): void
     foreach (['moyu_profile_site' => '个人网站链接', 'moyu_profile_github' => 'GitHub 链接'] as $id => $label) {
         $customizer->add_setting($id, ['default' => '', 'sanitize_callback' => 'esc_url_raw']);
         $customizer->add_control($id, ['section' => 'moyu_profile', 'label' => $label, 'type' => 'url']);
+    }
+
+    $customizer->add_section('moyu_footer', [
+        'title' => 'MY Blog 页脚',
+        'priority' => 31,
+    ]);
+    foreach ([
+        'moyu_footer_copyright' => ['版权文字', '©2026墨雨的博客网站'],
+        'moyu_footer_slogan' => ['页脚文案', 'Stay curious, keep learning, and grow a little every day.'],
+    ] as $id => [$label, $default]) {
+        $customizer->add_setting($id, ['default' => $default, 'sanitize_callback' => 'sanitize_text_field']);
+        $customizer->add_control($id, ['section' => 'moyu_footer', 'label' => $label, 'type' => 'text']);
     }
 }
 add_action('customize_register', 'moyu_glass_customize');

@@ -4,7 +4,7 @@ if (!defined('ABSPATH')) {
 }
 
 $published = wp_count_posts('post')->publish;
-$tag_count = wp_count_terms(['taxonomy' => 'post_tag', 'hide_empty' => true]);
+$page_views = (int) get_option('moyu_glass_page_views', 0);
 $tags = get_tags(['number' => 10, 'orderby' => 'count', 'order' => 'DESC']);
 $updated = get_posts(['numberposts' => 3, 'post_status' => 'publish', 'orderby' => 'modified', 'order' => 'DESC']);
 $profile_site = get_theme_mod('moyu_profile_site');
@@ -37,7 +37,7 @@ $personal_tags = array_values(array_unique(array_filter(array_map('trim', $perso
         <h2><?php echo esc_html(get_theme_mod('moyu_stats_title', '站点统计')); ?></h2>
         <div class="moyu-stats">
             <div><strong><?php echo esc_html($published); ?></strong><span>文章</span></div>
-            <div><strong><?php echo esc_html(is_wp_error($tag_count) ? 0 : $tag_count); ?></strong><span>标签</span></div>
+            <div><strong><?php echo esc_html(number_format_i18n($page_views)); ?></strong><span>浏览量</span></div>
         </div>
     </section>
 
