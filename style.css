@@ -3,7 +3,7 @@ Theme Name: Moyu Glass
 Theme URI: https://www.moyu.loan/
 Author: Moyu
 Description: 夕阳晚霞玻璃态个人博客主题。
-Version: 1.10.0
+Version: 1.11.0
 Requires at least: 6.0
 Requires PHP: 7.4
 Text Domain: moyu-glass
@@ -167,10 +167,6 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
 .moyu-footer strong { color: var(--moyu-text); }
 .moyu-footer span { color: var(--moyu-muted); }
 .siteleads-root { display: none !important; }
-.moyu-contact { position: fixed; right: 24px; bottom: 24px; z-index: 1000; display: grid; gap: 10px; }
-.moyu-contact a { display: grid; width: 58px; height: 58px; place-items: center; border: 1px solid rgba(229,163,79,.45); border-radius: 50%; color: #fff; background: #1769e8; box-shadow: 0 8px 24px rgba(0,0,0,.3); }
-.moyu-contact a:hover { color: #101721; background: var(--moyu-gold); transform: translateY(-2px); }
-.moyu-contact svg { width: 28px; height: 28px; fill: currentColor; }
 .moyu-page-layout { width: min(1000px, 100%); margin: 0 auto; }
 .moyu-reader { width: min(860px, 100%); margin: 30px auto 60px; padding: clamp(26px, 5vw, 64px); }
 .moyu-back { color: var(--moyu-gold); }
@@ -209,8 +205,6 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
   .moyu-thumb, .moyu-thumb img { min-height: 190px; }
   .moyu-post-navigation { grid-template-columns: 1fr; }
   .moyu-post-navigation div:last-child { text-align: left; }
-  .moyu-contact { right: 14px; bottom: 14px; }
-  .moyu-contact a { width: 50px; height: 50px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
