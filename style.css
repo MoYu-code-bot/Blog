@@ -3,7 +3,7 @@ Theme Name: Moyu Glass
 Theme URI: https://www.moyu.loan/
 Author: Moyu
 Description: 夕阳晚霞玻璃态个人博客主题。
-Version: 1.13.0
+Version: 1.14.0
 Requires at least: 6.0
 Requires PHP: 7.4
 Text Domain: moyu-glass
@@ -43,15 +43,16 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
   top: 0;
   left: 0;
   width: 420px;
-  height: 420px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,226,153,.34) 0 4%, rgba(229,163,79,.24) 18%, rgba(20,198,255,.13) 42%, transparent 68%);
-  filter: blur(42px) saturate(1.35);
+  height: 210px;
+  border-radius: 67% 33% 58% 42% / 42% 62% 38% 58%;
+  background: radial-gradient(ellipse at 62% 50%, rgba(255,231,166,.42), rgba(229,163,79,.23) 25%, rgba(20,198,255,.16) 48%, transparent 72%);
+  filter: blur(32px) saturate(1.45);
   opacity: 0;
   pointer-events: none;
   mix-blend-mode: screen;
-  transform: translate(calc(var(--glow-x, -500px) - 210px), calc(var(--glow-y, -500px) - 210px)) scale(calc(.9 + var(--glow-energy, 0) * .16));
+  transform: translate(calc(var(--glow-x, -500px) - 210px), calc(var(--glow-y, -500px) - 105px)) rotate(var(--glow-angle, 0rad)) skewX(-12deg) scale(calc(.9 + var(--glow-energy, 0) * .18));
   transition: transform .08s ease-out, opacity .25s ease;
+  animation: moyu-liquid 3.6s ease-in-out infinite alternate;
   content: "";
 }
 .moyu-home::after {
@@ -59,22 +60,25 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
   z-index: 0;
   top: 0;
   left: 0;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background: repeating-conic-gradient(from 18deg, rgba(255,197,91,.95) 0 5deg, transparent 5deg 22deg, rgba(30,205,255,.8) 22deg 25deg, transparent 25deg 48deg);
-  filter: drop-shadow(0 0 8px rgba(229,163,79,.8)) drop-shadow(0 0 18px rgba(30,205,255,.45));
+  width: 300px;
+  height: 76px;
+  border-radius: 74% 26% 68% 32% / 58% 72% 28% 42%;
+  background: linear-gradient(90deg, transparent, rgba(18,190,255,.18) 24%, rgba(229,163,79,.65) 72%, rgba(255,240,190,.9));
+  filter: blur(12px) drop-shadow(0 0 16px rgba(30,205,255,.42));
   opacity: 0;
   pointer-events: none;
-  transform: translate(calc(var(--glow-x, -300px) - 75px), calc(var(--glow-y, -300px) - 75px)) scale(calc(.82 + var(--glow-energy, 0) * .22));
+  transform: translate(calc(var(--glow-x, -400px) - 260px), calc(var(--glow-y, -400px) - 38px)) rotate(var(--glow-angle, 0rad)) scaleX(calc(.8 + var(--glow-energy, 0) * .45));
   transition: transform .16s cubic-bezier(.2,.8,.2,1), opacity .2s ease;
+  animation: moyu-liquid 2.8s ease-in-out infinite alternate-reverse;
   content: "";
-  -webkit-mask: radial-gradient(circle, transparent 0 42%, #000 44% 48%, transparent 50% 61%, #000 63% 66%, transparent 68%);
-  mask: radial-gradient(circle, transparent 0 42%, #000 44% 48%, transparent 50% 61%, #000 63% 66%, transparent 68%);
 }
 .moyu-home.has-pointer-glow::before { opacity: calc(.72 + var(--glow-energy, 0) * .28); }
 .moyu-home.has-pointer-glow::after { opacity: calc(.55 + var(--glow-energy, 0) * .4); }
 .moyu-home > * { position: relative; z-index: 1; }
+@keyframes moyu-liquid {
+  from { border-radius: 67% 33% 58% 42% / 42% 62% 38% 58%; }
+  to { border-radius: 38% 62% 31% 69% / 63% 35% 65% 37%; }
+}
 .moyu-header {
   position: sticky;
   z-index: 20;
@@ -153,7 +157,7 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
 .moyu-posts > h1, .moyu-posts > h2 { margin: 0; color: var(--moyu-gold); font-family: "Noto Serif SC", serif; font-size: 2rem; }
 .moyu-heading-rule { width: 48px; margin: 12px 0 18px; border: 0; border-top: 2px solid var(--moyu-gold); }
 .moyu-timeline { position: relative; margin-left: 16px; padding-left: 34px; border-left: 2px solid rgba(229,163,79,.78); }
-.moyu-year { position: relative; left: -66px; width: fit-content; margin: 4px 0 -12px; padding: 4px 9px; border: 1px solid var(--moyu-gold); border-radius: 7px; color: var(--moyu-gold); background: #0b1624; font-size: .88rem; }
+.moyu-year { position: relative; left: -34px; width: fit-content; margin: 4px 0 -12px; padding: 4px 9px; border: 1px solid var(--moyu-gold); border-radius: 7px; color: var(--moyu-gold); background: #0b1624; font-size: .88rem; transform: translateX(-50%); }
 .moyu-article {
   position: relative;
   display: grid;
