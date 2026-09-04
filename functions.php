@@ -117,5 +117,14 @@ function moyu_glass_customize(WP_Customize_Manager $customizer): void
         $customizer->add_setting($id, ['default' => $default, 'sanitize_callback' => 'sanitize_text_field']);
         $customizer->add_control($id, ['section' => 'moyu_footer', 'label' => $label, 'type' => 'text']);
     }
+
+    $customizer->add_section('moyu_contact', [
+        'title' => 'MY Blog 联系方式',
+        'priority' => 32,
+    ]);
+    $customizer->add_setting('moyu_contact_email', ['default' => '', 'sanitize_callback' => 'sanitize_email']);
+    $customizer->add_control('moyu_contact_email', ['section' => 'moyu_contact', 'label' => 'E-mail', 'type' => 'email']);
+    $customizer->add_setting('moyu_contact_qq', ['default' => '', 'sanitize_callback' => static fn($value) => preg_replace('/\D+/', '', $value)]);
+    $customizer->add_control('moyu_contact_qq', ['section' => 'moyu_contact', 'label' => 'QQ 号码', 'type' => 'text']);
 }
 add_action('customize_register', 'moyu_glass_customize');
