@@ -3,7 +3,7 @@ Theme Name: Moyu Glass
 Theme URI: https://www.moyu.loan/
 Author: Moyu
 Description: 夕阳晚霞玻璃态个人博客主题。
-Version: 1.11.0
+Version: 1.12.0
 Requires at least: 6.0
 Requires PHP: 7.4
 Text Domain: moyu-glass
@@ -32,7 +32,7 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
 
 .moyu-home {
   min-height: 100vh;
-  padding: 48px clamp(18px, 5vw, 76px) 0;
+  padding: 32px clamp(14px, 1.5vw, 28px) 0;
   background:
     linear-gradient(rgba(4, 11, 22, .22), rgba(4, 11, 22, .38)),
     url("assets/images/sunset-hero.png") center / cover fixed;
@@ -63,7 +63,7 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
   grid-template-columns: minmax(150px, 1fr) auto minmax(170px, 1fr);
   align-items: center;
   gap: 24px;
-  width: min(1480px, 100%);
+  width: 100%;
   margin: 0 auto 42px;
   padding: 8px 18px;
   border-radius: 18px;
@@ -80,9 +80,9 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
 
 .moyu-layout {
   display: grid;
-  grid-template-columns: minmax(340px, 31%) minmax(0, 1fr);
+  grid-template-columns: clamp(320px, 21vw, 410px) minmax(0, 1fr);
   gap: 24px;
-  width: min(1480px, 100%);
+  width: 100%;
   margin: 0 auto;
 }
 .moyu-archive-layout { width: min(1120px, 100%); margin: 0 auto; }
