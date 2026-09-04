@@ -1,0 +1,191 @@
+/*
+Theme Name: Moyu Glass
+Theme URI: https://www.moyu.loan/
+Author: Moyu
+Description: 夕阳晚霞玻璃态个人博客主题。
+Version: 1.3.0
+Requires at least: 6.0
+Requires PHP: 7.4
+Text Domain: moyu-glass
+*/
+
+:root {
+  --moyu-bg: #07111f;
+  --moyu-glass: rgba(7, 15, 27, .78);
+  --moyu-line: rgba(226, 158, 70, .55);
+  --moyu-gold: #e5a34f;
+  --moyu-text: #f4eadb;
+  --moyu-muted: #c7c4bf;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--moyu-text);
+  background: var(--moyu-bg);
+  font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+}
+a { color: inherit; text-decoration: none; }
+a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
+
+.moyu-home {
+  min-height: 100vh;
+  padding: 48px clamp(18px, 5vw, 76px) 0;
+  background:
+    linear-gradient(rgba(4, 11, 22, .22), rgba(4, 11, 22, .38)),
+    url("assets/images/sunset-hero.png") center / cover fixed;
+}
+.moyu-header {
+  position: sticky;
+  z-index: 20;
+  top: 18px;
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) auto minmax(170px, 1fr);
+  align-items: center;
+  gap: 24px;
+  width: min(1480px, 100%);
+  margin: 0 auto 42px;
+  padding: 8px 18px;
+  border-radius: 18px;
+}
+.moyu-brand { min-width: 150px; color: #f3d59d; font-family: "Noto Serif SC", serif; font-size: 1.4rem; font-weight: 700; }
+.moyu-nav { justify-self: center; }
+.moyu-nav ul { display: flex; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.moyu-nav a { display: block; padding: 12px 22px 10px; color: var(--moyu-muted); }
+.moyu-nav a:hover, .moyu-nav a[aria-current="page"] { color: var(--moyu-gold); }
+.moyu-nav a[aria-current="page"] { border-bottom: 2px solid var(--moyu-gold); }
+.moyu-search { justify-self: end; }
+.moyu-search input { width: 180px; padding: 10px 14px; border: 1px solid rgba(255,255,255,.12); border-radius: 10px; color: var(--moyu-text); background: rgba(255,255,255,.05); font: inherit; }
+.moyu-search input::placeholder { color: #9d9b98; }
+
+.moyu-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 31%) minmax(0, 1fr);
+  gap: 20px;
+  width: min(1320px, 100%);
+  margin: 0 auto;
+}
+.moyu-archive-layout { width: min(1120px, 100%); margin: 0 auto; }
+.moyu-glass {
+  border: 1px solid var(--moyu-line);
+  border-radius: 24px;
+  background: var(--moyu-glass);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, .32);
+  backdrop-filter: blur(20px);
+}
+
+.moyu-sidebar { display: grid; align-content: start; gap: 18px; }
+.moyu-profile { padding: 38px; text-align: center; }
+.moyu-avatar {
+  width: 150px;
+  height: 150px;
+  border: 2px solid var(--moyu-gold);
+  border-radius: 50%;
+  object-fit: cover;
+}
+.moyu-profile h1 { margin: 24px 0 8px; color: #f3d59d; font-family: "Noto Serif SC", serif; font-size: clamp(1.8rem, 3vw, 2.5rem); }
+.moyu-profile > p { margin: 0; color: var(--moyu-muted); }
+.moyu-rule { width: 44px; margin: 24px auto; border: 0; border-top: 2px solid var(--moyu-gold); }
+.moyu-profile h2 { margin: 0 0 16px; color: #e8b86d; text-align: left; font-size: 1.15rem; }
+.moyu-skills { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; text-align: left; }
+.moyu-skills li { padding: 13px 16px; border: 1px solid rgba(255,255,255,.08); border-radius: 10px; background: rgba(255,255,255,.025); }
+.moyu-profile-links { display: flex; justify-content: center; gap: 10px; margin-top: 18px; }
+.moyu-profile-links a { padding: 8px 12px; border: 1px solid rgba(229,163,79,.32); border-radius: 8px; color: var(--moyu-gold); }
+.moyu-side-card { padding: 24px; }
+.moyu-side-card h2 { margin: 0 0 16px; color: #f3d59d; font-family: "Noto Serif SC", serif; font-size: 1.15rem; }
+.moyu-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.moyu-stats div { padding: 16px; border: 1px solid rgba(229,163,79,.2); border-radius: 12px; background: rgba(229,163,79,.08); text-align: center; }
+.moyu-stats strong, .moyu-stats span { display: block; }
+.moyu-stats strong { color: var(--moyu-gold); font-size: 1.45rem; }
+.moyu-stats span { margin-top: 4px; color: var(--moyu-muted); font-size: .85rem; }
+.moyu-tags { display: flex; flex-wrap: wrap; gap: 9px; }
+.moyu-tags a { padding: 7px 11px; border: 1px solid rgba(229,163,79,.24); border-radius: 9px; color: var(--moyu-muted); background: rgba(255,255,255,.035); }
+.moyu-tags a:hover { color: var(--moyu-gold); border-color: var(--moyu-gold); }
+.moyu-updated { display: grid; gap: 13px; margin: 0; padding: 0; list-style: none; }
+.moyu-updated li { padding-bottom: 13px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.moyu-updated li:last-child { padding-bottom: 0; border-bottom: 0; }
+.moyu-updated a, .moyu-updated time { display: block; }
+.moyu-updated time { margin-top: 5px; color: var(--moyu-muted); font-size: .82rem; }
+
+.moyu-posts { padding: 34px 42px; }
+.moyu-posts > h1, .moyu-posts > h2 { margin: 0; color: var(--moyu-gold); font-family: "Noto Serif SC", serif; font-size: 2rem; }
+.moyu-heading-rule { width: 48px; margin: 12px 0 18px; border: 0; border-top: 2px solid var(--moyu-gold); }
+.moyu-timeline { position: relative; margin-left: 16px; padding-left: 34px; border-left: 2px solid rgba(229,163,79,.78); }
+.moyu-year { position: relative; left: -66px; width: fit-content; margin: 4px 0 -12px; padding: 4px 9px; border: 1px solid var(--moyu-gold); border-radius: 7px; color: var(--moyu-gold); background: #0b1624; font-size: .88rem; }
+.moyu-article {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(230px, 43%) minmax(0, 1fr);
+  gap: 34px;
+  padding: 42px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.moyu-article:last-child { border-bottom: 0; }
+.moyu-article.moyu-no-image { grid-template-columns: 1fr; }
+.moyu-article::before { position: absolute; top: 50px; left: -42px; width: 12px; height: 12px; border: 3px solid var(--moyu-gold); border-radius: 50%; background: #101a27; box-shadow: 0 0 15px rgba(229,163,79,.6); content: ""; }
+.moyu-thumb { overflow: hidden; min-height: 220px; border: 1px solid rgba(229,163,79,.45); border-radius: 12px; background: rgba(255,255,255,.03); }
+.moyu-thumb img { width: 100%; height: 100%; min-height: 220px; object-fit: cover; transition: transform .3s ease; }
+.moyu-article:hover .moyu-thumb img { transform: scale(1.025); }
+.moyu-copy { align-self: center; }
+.moyu-copy h3 { margin: 0 0 14px; color: var(--moyu-gold); font-family: "Noto Serif SC", serif; font-size: clamp(1.55rem, 2.4vw, 2.1rem); }
+.moyu-date { color: var(--moyu-muted); font-size: .95rem; }
+.moyu-post-meta { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 10px; color: #aaa8a4; font-size: .84rem; }
+.moyu-post-meta a { color: var(--moyu-gold); }
+.moyu-excerpt { margin: 18px 0 24px; color: var(--moyu-muted); line-height: 1.8; }
+.moyu-button { display: inline-block; padding: 11px 25px; border: 1px solid var(--moyu-gold); border-radius: 8px; color: var(--moyu-gold); }
+.moyu-button:hover { color: #101721; background: var(--moyu-gold); }
+.moyu-empty { padding: 42px 0; color: var(--moyu-muted); }
+.moyu-all-posts { display: block; width: fit-content; margin: 28px 0 0 auto; color: var(--moyu-gold); }
+.moyu-pagination { margin-top: 28px; }
+.moyu-pagination .nav-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.moyu-pagination .page-numbers { padding: 8px 12px; border: 1px solid rgba(229,163,79,.34); border-radius: 8px; }
+.moyu-pagination .current { color: #101721; background: var(--moyu-gold); }
+
+.moyu-footer { display: grid; gap: 8px; margin: 34px calc(50% - 50vw) 0; padding: 20px 24px; border-top: 1px solid rgba(229,163,79,.22); color: rgba(255,255,255,.82); background: rgba(4,12,23,.82); text-align: center; backdrop-filter: blur(16px); }
+.moyu-footer strong { color: var(--moyu-text); }
+.moyu-footer span { color: var(--moyu-muted); }
+.moyu-page-layout { width: min(1000px, 100%); margin: 0 auto; }
+.moyu-reader { width: min(860px, 100%); margin: 30px auto 60px; padding: clamp(26px, 5vw, 64px); }
+.moyu-back { color: var(--moyu-gold); }
+.moyu-reader h1 { margin: 32px 0 12px; color: var(--moyu-gold); font-family: "Noto Serif SC", serif; font-size: clamp(2rem, 5vw, 3.5rem); }
+.moyu-reader-image { width: 100%; margin: 30px 0; border-radius: 14px; }
+.moyu-article-content { color: #e7e0d6; font-size: 1.08rem; line-height: 1.9; }
+.moyu-article-content a { color: var(--moyu-gold); text-decoration: underline; }
+.moyu-article-content pre { overflow-x: auto; padding: 18px; border: 1px solid rgba(229,163,79,.22); border-radius: 12px; background: #050b13; line-height: 1.65; }
+.moyu-article-content :not(pre) > code { padding: 2px 6px; border-radius: 5px; color: #f2c783; background: rgba(229,163,79,.12); }
+.moyu-single-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.moyu-single-tags a { padding: 6px 10px; border: 1px solid rgba(229,163,79,.3); border-radius: 7px; color: var(--moyu-gold); }
+.moyu-post-navigation { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 30px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.1); }
+.moyu-post-navigation div:last-child { text-align: right; }
+.moyu-post-navigation a { color: var(--moyu-gold); }
+.moyu-comments { margin-top: 42px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,.12); }
+.moyu-comments h2, .moyu-comments .comment-reply-title { color: var(--moyu-gold); font-family: "Noto Serif SC", serif; }
+.moyu-comment-list { margin: 0 0 32px; padding: 0; list-style: none; }
+.moyu-comment-list .comment { margin: 16px 0; padding: 18px; border: 1px solid rgba(255,255,255,.1); border-radius: 12px; background: rgba(255,255,255,.035); }
+.moyu-comment-list .children { list-style: none; }
+.moyu-comments .avatar { float: left; margin-right: 12px; border-radius: 50%; }
+.moyu-comments .comment-meta { color: var(--moyu-muted); font-size: .85rem; }
+.moyu-comments textarea, .moyu-comments input[type="text"], .moyu-comments input[type="email"], .moyu-comments input[type="url"] { width: 100%; padding: 12px 14px; border: 1px solid rgba(229,163,79,.32); border-radius: 9px; color: var(--moyu-text); background: rgba(3,10,20,.68); font: inherit; }
+.moyu-comments textarea:focus, .moyu-comments input:focus { border-color: var(--moyu-gold); outline: none; }
+.moyu-comments .submit { padding: 11px 24px; border: 1px solid var(--moyu-gold); border-radius: 8px; color: #101721; background: var(--moyu-gold); cursor: pointer; font: inherit; }
+.moyu-comments .comment-notes { color: var(--moyu-muted); font-size: .9rem; }
+
+@media (max-width: 820px) {
+  .moyu-home { padding: 26px 14px 0; background-attachment: scroll; }
+  .moyu-header { position: static; grid-template-columns: 1fr; gap: 4px; margin-bottom: 24px; }
+  .moyu-brand, .moyu-nav, .moyu-search { justify-self: center; }
+  .moyu-search input { width: min(280px, 75vw); }
+  .moyu-nav a { padding-inline: 14px; }
+  .moyu-layout { grid-template-columns: 1fr; }
+  .moyu-profile, .moyu-posts { padding: 28px 22px; }
+  .moyu-article { grid-template-columns: 1fr; gap: 20px; }
+  .moyu-thumb, .moyu-thumb img { min-height: 190px; }
+  .moyu-post-navigation { grid-template-columns: 1fr; }
+  .moyu-post-navigation div:last-child { text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .moyu-thumb img { transition: none; }
+}
