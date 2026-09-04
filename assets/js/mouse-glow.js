@@ -20,43 +20,33 @@
 
     window.addEventListener('pointermove', (event) => {
         const previous = points[points.length - 1];
-        if (!previous || Math.hypot(event.clientX - previous.x, event.clientY - previous.y) > 3) {
+        if (!previous || Math.hypot(event.clientX - previous.x, event.clientY - previous.y) > 6) {
             points.push({ x: event.clientX, y: event.clientY, born: performance.now() });
         }
     }, { passive: true });
 
-    const drawWave = (now, offset, color, width, blur) => {
-        if (points.length < 2) return;
-        context.beginPath();
+    const drawWake = (now) => {
         points.forEach((point, index) => {
-            const next = points[Math.min(index + 1, points.length - 1)];
-            const angle = Math.atan2(next.y - point.y, next.x - point.x) + Math.PI / 2;
-            const wave = Math.sin(now * .006 + index * .7) * offset;
-            const x = point.x + Math.cos(angle) * wave;
-            const y = point.y + Math.sin(angle) * wave;
-            if (!index) context.moveTo(x, y);
-            else context.quadraticCurveTo(point.x, point.y, x, y);
+            if (index % 2) return;
+            const age = Math.min(1, (now - point.born) / 520);
+            const radius = 10 + age * 22;
+            const wave = Math.sin(now * .004 + index * .55) * 3;
+            const glow = context.createRadialGradient(point.x + wave, point.y, 0, point.x + wave, point.y, radius);
+            glow.addColorStop(0, `rgba(255,236,190,${.12 * (1 - age)})`);
+            glow.addColorStop(.38, `rgba(229,163,79,${.07 * (1 - age)})`);
+            glow.addColorStop(.72, `rgba(36,207,255,${.035 * (1 - age)})`);
+            glow.addColorStop(1, 'rgba(36,207,255,0)');
+            context.fillStyle = glow;
+            context.beginPath();
+            context.ellipse(point.x + wave, point.y, radius * 1.7, radius * .55, 0, 0, Math.PI * 2);
+            context.fill();
         });
-        context.strokeStyle = color;
-        context.lineWidth = width;
-        context.lineCap = 'round';
-        context.lineJoin = 'round';
-        context.shadowBlur = blur;
-        context.shadowColor = color;
-        context.stroke();
     };
 
     const animate = (now) => {
-        while (points[0] && now - points[0].born > 720) points.shift();
+        while (points[0] && now - points[0].born > 520) points.shift();
         context.clearRect(0, 0, innerWidth, innerHeight);
-        const newest = points[points.length - 1];
-        const alpha = newest ? Math.max(0, 1 - (now - newest.born) / 720) : 0;
-        context.globalAlpha = alpha * .32;
-        drawWave(now, 9, '#24cfff', 15, 24);
-        context.globalAlpha = alpha * .5;
-        drawWave(now, 5, '#e5a34f', 6, 16);
-        context.globalAlpha = alpha * .75;
-        drawWave(now, 2, '#fff0bd', 2, 10);
+        drawWake(now);
         requestAnimationFrame(animate);
     };
     requestAnimationFrame(animate);
