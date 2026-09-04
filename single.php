@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
             <time class="moyu-date" datetime="<?php echo esc_attr(get_the_date(DATE_W3C)); ?>"><?php echo esc_html(get_the_date('Y年n月j日')); ?></time>
             <div class="moyu-post-meta"><span>阅读 <?php echo esc_html(moyu_glass_reading_minutes()); ?> 分钟</span><span>最后更新：<?php echo esc_html(get_the_modified_date('Y年n月j日')); ?></span></div>
             <?php if (has_post_thumbnail()) : ?>
-                <?php the_post_thumbnail('large', ['class' => 'moyu-reader-image']); ?>
+                <?php the_post_thumbnail('full', ['class' => 'moyu-reader-image']); ?>
             <?php endif; ?>
             <div class="moyu-article-content"><?php the_content(); ?></div>
             <?php the_tags('<div class="moyu-single-tags">', '', '</div>'); ?>

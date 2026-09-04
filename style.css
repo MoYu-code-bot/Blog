@@ -3,7 +3,7 @@ Theme Name: Moyu Glass
 Theme URI: https://www.moyu.loan/
 Author: Moyu
 Description: 夕阳晚霞玻璃态个人博客主题。
-Version: 1.16.0
+Version: 1.17.0
 Requires at least: 6.0
 Requires PHP: 7.4
 Text Domain: moyu-glass
@@ -151,11 +151,11 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
 .moyu-footer strong { color: var(--moyu-text); }
 .moyu-footer span { color: var(--moyu-muted); }
 .siteleads-root { display: none !important; }
-.moyu-page-layout { width: min(1000px, 100%); margin: 0 auto; }
-.moyu-reader { width: min(860px, 100%); margin: 30px auto 60px; padding: clamp(26px, 5vw, 64px); }
+.moyu-page-layout { width: 100%; margin: 0 auto; }
+.moyu-reader { width: 100%; margin: 24px auto 48px; padding: clamp(26px, 4vw, 64px); }
 .moyu-back { color: var(--moyu-gold); }
 .moyu-reader h1 { margin: 32px 0 12px; color: var(--moyu-gold); font-family: "Noto Serif SC", serif; font-size: clamp(2rem, 5vw, 3.5rem); }
-.moyu-reader-image { width: 100%; margin: 30px 0; border-radius: 14px; }
+.moyu-reader-image { display: block; width: auto; max-width: 100%; height: auto; max-height: 72vh; margin: 30px auto; border-radius: 14px; object-fit: contain; }
 .moyu-article-content { color: #e7e0d6; font-size: 1.08rem; line-height: 1.9; }
 .moyu-article-content a { color: var(--moyu-gold); text-decoration: underline; }
 .moyu-article-content pre { overflow-x: auto; padding: 18px; border: 1px solid rgba(229,163,79,.22); border-radius: 12px; background: #050b13; line-height: 1.65; }
