@@ -74,6 +74,14 @@ function moyu_glass_customize(WP_Customize_Manager $customizer): void
         $customizer->add_control($id, ['section' => 'moyu_profile', 'label' => $label, 'type' => 'text']);
     }
 
+    $customizer->add_setting('moyu_personal_tags', ['default' => '', 'sanitize_callback' => 'sanitize_textarea_field']);
+    $customizer->add_control('moyu_personal_tags', [
+        'section' => 'moyu_profile',
+        'label' => '个人标签',
+        'description' => '使用逗号、中文逗号或换行分隔，可添加多个标签。',
+        'type' => 'textarea',
+    ]);
+
     $customizer->add_setting('moyu_profile_avatar', [
         'default' => get_theme_file_uri('assets/images/avatar.png'),
         'sanitize_callback' => 'esc_url_raw',

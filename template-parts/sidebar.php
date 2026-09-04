@@ -9,6 +9,8 @@ $tags = get_tags(['number' => 10, 'orderby' => 'count', 'order' => 'DESC']);
 $updated = get_posts(['numberposts' => 3, 'post_status' => 'publish', 'orderby' => 'modified', 'order' => 'DESC']);
 $profile_site = get_theme_mod('moyu_profile_site');
 $profile_github = get_theme_mod('moyu_profile_github');
+$personal_tags = preg_split('/[\r\n,，]+/u', get_theme_mod('moyu_personal_tags', ''));
+$personal_tags = array_values(array_unique(array_filter(array_map('trim', $personal_tags))));
 ?>
 <aside class="moyu-sidebar" aria-label="博客资料">
     <section class="moyu-profile moyu-glass">
@@ -39,12 +41,15 @@ $profile_github = get_theme_mod('moyu_profile_github');
         </div>
     </section>
 
-    <?php if ($tags) : ?>
+    <?php if ($tags || $personal_tags) : ?>
         <section class="moyu-side-card moyu-glass">
             <h2><?php echo esc_html(get_theme_mod('moyu_tags_title', '标签')); ?></h2>
             <div class="moyu-tags">
                 <?php foreach ($tags as $tag) : ?>
                     <a href="<?php echo esc_url(get_tag_link($tag)); ?>"><?php echo esc_html($tag->name); ?></a>
+                <?php endforeach; ?>
+                <?php foreach ($personal_tags as $personal_tag) : ?>
+                    <span><?php echo esc_html($personal_tag); ?></span>
                 <?php endforeach; ?>
             </div>
         </section>
