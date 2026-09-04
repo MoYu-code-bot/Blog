@@ -3,7 +3,7 @@ Theme Name: Moyu Glass
 Theme URI: https://www.moyu.loan/
 Author: Moyu
 Description: 夕阳晚霞玻璃态个人博客主题。
-Version: 1.7.0
+Version: 1.8.0
 Requires at least: 6.0
 Requires PHP: 7.4
 Text Domain: moyu-glass
@@ -11,7 +11,7 @@ Text Domain: moyu-glass
 
 :root {
   --moyu-bg: #07111f;
-  --moyu-glass: rgba(7, 15, 27, .78);
+  --moyu-glass: rgba(7, 15, 27, .70);
   --moyu-line: rgba(226, 158, 70, .55);
   --moyu-gold: #e5a34f;
   --moyu-text: #f4eadb;
@@ -62,7 +62,7 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
   grid-template-columns: minmax(150px, 1fr) auto minmax(170px, 1fr);
   align-items: center;
   gap: 24px;
-  width: min(1480px, 100%);
+  width: 100%;
   margin: 0 auto 42px;
   padding: 8px 18px;
   border-radius: 18px;
