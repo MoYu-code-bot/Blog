@@ -26,7 +26,7 @@ $profile_github = get_theme_mod('moyu_profile_github');
         <?php if ($profile_site || $profile_github) : ?>
             <div class="moyu-profile-links">
                 <?php if ($profile_site) : ?><a href="<?php echo esc_url($profile_site); ?>">个人网站</a><?php endif; ?>
-                <?php if ($profile_github) : ?><a href="<?php echo esc_url($profile_github); ?>" rel="me">GitHub</a><?php endif; ?>
+                <?php if ($profile_github) : ?><a class="moyu-social-link" href="<?php echo esc_url($profile_github); ?>" rel="me" aria-label="GitHub" title="GitHub"><img src="<?php echo esc_url(get_theme_file_uri('assets/images/github.svg')); ?>" alt="" width="28" height="28"></a><?php endif; ?>
             </div>
         <?php endif; ?>
     </section>

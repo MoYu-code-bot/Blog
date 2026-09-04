@@ -15,7 +15,9 @@ add_action('after_setup_theme', 'moyu_glass_setup');
 
 function moyu_glass_assets(): void
 {
-    wp_enqueue_style('moyu-glass', get_stylesheet_uri(), [], wp_get_theme()->get('Version'));
+    $version = wp_get_theme()->get('Version');
+    wp_enqueue_style('moyu-glass', get_stylesheet_uri(), [], $version);
+    wp_enqueue_script('moyu-glass-glow', get_theme_file_uri('assets/js/mouse-glow.js'), [], $version, true);
 }
 add_action('wp_enqueue_scripts', 'moyu_glass_assets');
 

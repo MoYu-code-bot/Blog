@@ -3,7 +3,7 @@ Theme Name: Moyu Glass
 Theme URI: https://www.moyu.loan/
 Author: Moyu
 Description: 夕阳晚霞玻璃态个人博客主题。
-Version: 1.3.0
+Version: 1.4.0
 Requires at least: 6.0
 Requires PHP: 7.4
 Text Domain: moyu-glass
@@ -36,6 +36,24 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
     linear-gradient(rgba(4, 11, 22, .22), rgba(4, 11, 22, .38)),
     url("assets/images/sunset-hero.png") center / cover fixed;
 }
+.moyu-home::before {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: rgba(245, 176, 83, .16);
+  filter: blur(72px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(calc(var(--glow-x, -300px) - 130px), calc(var(--glow-y, -300px) - 130px));
+  transition: transform .14s ease-out, opacity .25s ease;
+  content: "";
+}
+.moyu-home.has-pointer-glow::before { opacity: 1; }
+.moyu-home > * { position: relative; z-index: 1; }
 .moyu-header {
   position: sticky;
   z-index: 20;
@@ -92,6 +110,8 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
 .moyu-skills li { padding: 13px 16px; border: 1px solid rgba(255,255,255,.08); border-radius: 10px; background: rgba(255,255,255,.025); }
 .moyu-profile-links { display: flex; justify-content: center; gap: 10px; margin-top: 18px; }
 .moyu-profile-links a { padding: 8px 12px; border: 1px solid rgba(229,163,79,.32); border-radius: 8px; color: var(--moyu-gold); }
+.moyu-profile-links .moyu-social-link { display: grid; width: 48px; height: 48px; padding: 0; place-items: center; }
+.moyu-social-link img { display: block; width: 28px; height: 28px; }
 .moyu-side-card { padding: 24px; }
 .moyu-side-card h2 { margin: 0 0 16px; color: #f3d59d; font-family: "Noto Serif SC", serif; font-size: 1.15rem; }
 .moyu-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
@@ -188,4 +208,5 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .moyu-thumb img { transition: none; }
+  .moyu-home::before { display: none; }
 }
