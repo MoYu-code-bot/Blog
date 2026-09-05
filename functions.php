@@ -17,6 +17,8 @@ function moyu_glass_assets(): void
 {
     $version = wp_get_theme()->get('Version');
     wp_enqueue_style('moyu-glass', get_stylesheet_uri(), [], $version);
+    $background = get_theme_mod('moyu_background_image', get_theme_file_uri('assets/images/sunset-hero.png'));
+    wp_add_inline_style('moyu-glass', '.moyu-home{--moyu-background-image:url(' . wp_json_encode(esc_url_raw($background)) . ');}');
     wp_enqueue_script('moyu-glass-glow', get_theme_file_uri('assets/js/mouse-glow.js'), [], $version, true);
 }
 add_action('wp_enqueue_scripts', 'moyu_glass_assets');
@@ -60,6 +62,20 @@ function moyu_glass_reading_minutes(?int $post_id = null): int
 
 function moyu_glass_customize(WP_Customize_Manager $customizer): void
 {
+    $customizer->add_section('moyu_appearance', [
+        'title' => 'MY Blog 外观',
+        'priority' => 29,
+    ]);
+    $customizer->add_setting('moyu_background_image', [
+        'default' => get_theme_file_uri('assets/images/sunset-hero.png'),
+        'sanitize_callback' => 'esc_url_raw',
+    ]);
+    $customizer->add_control(new WP_Customize_Image_Control($customizer, 'moyu_background_image', [
+        'section' => 'moyu_appearance',
+        'label' => '网站背景图片',
+        'description' => '用于首页、文章页和关于页面的全站背景。',
+    ]));
+
     $customizer->add_section('moyu_profile', [
         'title' => 'MY Blog 左侧栏',
         'priority' => 30,
