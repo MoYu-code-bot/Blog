@@ -1,17 +1,17 @@
 /*
-Theme Name: Moyu Glass
+Theme Name: Moyu Theme
 Theme URI: https://www.moyu.loan/
 Author: Moyu
-Description: 夕阳晚霞玻璃态个人博客主题。
-Version: 1.18.0
+Description: 夕阳晚霞液态玻璃个人博客主题。
+Version: 1.18.5
 Requires at least: 6.0
 Requires PHP: 7.4
-Text Domain: moyu-glass
+Text Domain: moyu-theme
 */
 
 :root {
   --moyu-bg: #07111f;
-  --moyu-glass: rgba(7, 15, 27, .70);
+  --moyu-glass: rgba(7, 15, 27, .20);
   --moyu-line: rgba(226, 158, 70, .55);
   --moyu-gold: #e5a34f;
   --moyu-text: #f4eadb;
@@ -29,6 +29,89 @@ body {
 }
 a { color: inherit; text-decoration: none; }
 a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
+
+html.moyu-intro-enabled,
+body.moyu-intro-lock { overflow: hidden; }
+.moyu-intro {
+  visibility: hidden;
+  position: fixed;
+  z-index: 999999;
+  inset: 0;
+  overflow: hidden;
+  color: var(--moyu-text);
+  background: var(--moyu-bg);
+  opacity: 1;
+}
+.moyu-intro-enabled .moyu-intro,
+.moyu-intro.is-playing { visibility: visible; }
+.moyu-intro.is-leaving { opacity: 0; transition: opacity .5s ease; }
+.moyu-intro-scene {
+  position: absolute;
+  inset: 0;
+  background: var(--moyu-background-image, url("assets/images/sunset-hero.png")) center / cover;
+  clip-path: circle(0 at 50% 50%);
+  filter: blur(8px) brightness(.72);
+}
+.moyu-intro-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(78vmin, 860px);
+  height: auto;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.015);
+  mix-blend-mode: screen;
+}
+.moyu-intro-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  color: #f3d59d;
+  font-family: "Noto Serif SC", "Microsoft YaHei", serif;
+  font-size: clamp(2.2rem, 5vw, 4.8rem);
+  font-weight: 700;
+  letter-spacing: .28em;
+  text-indent: .28em;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  text-shadow: 0 0 28px rgba(229, 163, 79, .45);
+}
+.moyu-intro-skip {
+  position: absolute;
+  z-index: 2;
+  top: clamp(18px, 3vw, 42px);
+  right: clamp(18px, 3vw, 42px);
+  padding: 9px 16px;
+  border: 1px solid rgba(243, 213, 157, .4);
+  border-radius: 999px;
+  color: #f3d59d;
+  background: rgba(7, 17, 31, .56);
+  cursor: pointer;
+  font: inherit;
+  backdrop-filter: blur(12px);
+}
+.moyu-intro-skip:hover { border-color: var(--moyu-gold); background: rgba(7, 17, 31, .82); }
+.moyu-intro.is-playing .moyu-intro-scene { animation: moyu-intro-reveal 2.4s cubic-bezier(.22,.75,.2,1) forwards; }
+.moyu-intro.is-playing .moyu-intro-ring { animation: moyu-intro-ring 2.15s cubic-bezier(.2,.72,.25,1) forwards; }
+.moyu-intro.is-playing .moyu-intro-title { animation: moyu-intro-title 1.45s ease .35s forwards; }
+
+@keyframes moyu-intro-reveal {
+  0%, 34% { clip-path: circle(0 at 50% 50%); filter: blur(8px) brightness(.72); }
+  72% { clip-path: circle(48vmax at 50% 50%); filter: blur(4px) brightness(.82); }
+  100% { clip-path: circle(75vmax at 50% 50%); filter: blur(0) brightness(1); }
+}
+@keyframes moyu-intro-ring {
+  0% { opacity: .4; transform: translate(-50%, -50%) scale(.015); }
+  28% { opacity: .72; transform: translate(-50%, -50%) scale(.11); }
+  68% { opacity: .92; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(2.05); }
+}
+@keyframes moyu-intro-title {
+  0% { opacity: 0; filter: blur(10px); transform: translate(-50%, -46%) scale(.96); }
+  32%, 72% { opacity: 1; filter: blur(0); transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; filter: blur(4px); transform: translate(-50%, -54%) scale(1.02); }
+}
 
 .moyu-home {
   min-height: 100vh;
@@ -75,7 +158,7 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
   border-radius: 24px;
   background: var(--moyu-glass);
   box-shadow: 0 22px 60px rgba(0, 0, 0, .32);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(6px);
 }
 
 .moyu-sidebar { display: grid; align-content: start; gap: 18px; }
@@ -195,4 +278,5 @@ a:focus-visible { outline: 2px solid var(--moyu-gold); outline-offset: 4px; }
   html { scroll-behavior: auto; }
   .moyu-thumb img { transition: none; }
   .moyu-water-canvas { display: none; }
+  .moyu-intro { display: none; }
 }

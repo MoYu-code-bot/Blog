@@ -18,10 +18,40 @@ function moyu_glass_assets(): void
     $version = wp_get_theme()->get('Version');
     wp_enqueue_style('moyu-glass', get_stylesheet_uri(), [], $version);
     $background = get_theme_mod('moyu_background_image', get_theme_file_uri('assets/images/sunset-hero.png'));
-    wp_add_inline_style('moyu-glass', '.moyu-home{--moyu-background-image:url(' . wp_json_encode(esc_url_raw($background)) . ');}');
+    wp_add_inline_style('moyu-glass', ':root{--moyu-background-image:url(' . wp_json_encode(esc_url_raw($background)) . ');}');
+    wp_enqueue_script('moyu-glass-intro', get_theme_file_uri('assets/js/intro.js'), [], $version, true);
     wp_enqueue_script('moyu-glass-glow', get_theme_file_uri('assets/js/mouse-glow.js'), [], $version, true);
 }
 add_action('wp_enqueue_scripts', 'moyu_glass_assets');
+
+function moyu_glass_intro_boot(): void
+{
+    ?>
+    <script>
+    try {
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && sessionStorage.getItem('moyu-glass-intro-seen') !== '1') {
+            document.documentElement.classList.add('moyu-intro-enabled');
+        }
+    } catch (error) {
+        document.documentElement.classList.add('moyu-intro-enabled');
+    }
+    </script>
+    <?php
+}
+add_action('wp_head', 'moyu_glass_intro_boot', 1);
+
+function moyu_glass_intro(): void
+{
+    ?>
+    <div class="moyu-intro" id="moyu-intro" aria-label="网站入场动画">
+        <div class="moyu-intro-scene" aria-hidden="true"></div>
+        <img class="moyu-intro-ring" src="<?php echo esc_url(get_theme_file_uri('assets/images/intro-ink-ring.png')); ?>" alt="">
+        <p class="moyu-intro-title" aria-hidden="true">墨雨</p>
+        <button class="moyu-intro-skip" type="button">跳过</button>
+    </div>
+    <?php
+}
+add_action('wp_body_open', 'moyu_glass_intro');
 
 function moyu_glass_articles_url(): string
 {
