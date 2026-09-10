@@ -67,7 +67,15 @@ function moyu_glass_about_url(): string
 
 function moyu_glass_archive_size(WP_Query $query): void
 {
-    if (!is_admin() && $query->is_main_query() && ($query->is_home() || $query->is_archive() || $query->is_search())) {
+    if (is_admin() || !$query->is_main_query()) {
+        return;
+    }
+
+    if ($query->is_search()) {
+        $query->set('post_type', 'post');
+    }
+
+    if ($query->is_home() || $query->is_archive() || $query->is_search()) {
         $query->set('posts_per_page', 10);
     }
 }

@@ -165,11 +165,16 @@ moyu-theme/
 git clone https://github.com/MoYu-code-bot/Blog.git
 ```
 
-当前主题版本为 `1.18.9`。主题样式版本位于 `style.css`，WordPress 会使用版本号刷新前端资源缓存。
+当前主题版本为 `1.18.10`。主题样式版本位于 `style.css`，WordPress 会使用版本号刷新前端资源缓存。
 
 ---
 
 ## 📝 更新记录
+
+### 1.18.10
+
+- 将站内搜索范围严格限制为文章（`post`）
+- 排除“首页”“关于我”等 WordPress 页面，避免被错误显示为文章结果
 
 ### 1.18.9
 

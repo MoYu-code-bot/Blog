@@ -16,6 +16,7 @@ $about_page = get_page_by_path('about');
     </nav>
     <form class="moyu-search" role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
         <label class="screen-reader-text" for="moyu-search-field">搜索文章</label>
+        <input type="hidden" name="post_type" value="post">
         <input id="moyu-search-field" type="search" name="s" value="<?php echo esc_attr(get_search_query()); ?>" placeholder="搜索文章">
     </form>
 </header>
