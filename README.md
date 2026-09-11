@@ -237,10 +237,4 @@ git clone https://github.com/MoYu-code-bot/Blog.git
 
 ---
 
-## 🙏 致谢
-
-部分内容功能与 README 组织方式参考了 [Fuwari Enhanced](https://github.com/Besty0728/fuwari)。Moyu Theme 保持独立的 WordPress 实现和现有夕阳液态玻璃结构。
-
----
-
 > Stay curious, keep learning, and grow a little every day.
