@@ -3,7 +3,7 @@ Theme Name: Moyu Theme FB
 Theme URI: https://www.moyu.loan/
 Author: Moyu
 Description: 夕阳晚霞液态玻璃个人博客主题。
-Version: 1.20.0-beta1
+Version: 1.20.1-beta1
 Requires at least: 6.0
 Requires PHP: 7.4
 Text Domain: moyu-theme
@@ -114,6 +114,8 @@ body.moyu-intro-lock { overflow: hidden; }
 }
 
 .moyu-home {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   padding: 32px clamp(14px, 1.5vw, 28px) 0;
   background:
@@ -262,7 +264,7 @@ body.moyu-intro-lock { overflow: hidden; }
 .moyu-pagination .page-numbers { padding: 8px 12px; border: 1px solid rgba(229,163,79,.34); border-radius: 8px; }
 .moyu-pagination .current { color: #101721; background: var(--moyu-gold); }
 
-.moyu-footer { display: grid; gap: 8px; margin: 34px calc(50% - 50vw) 0; padding: 20px 24px; border-top: 1px solid rgba(229,163,79,.22); color: rgba(255,255,255,.82); background: rgba(4,12,23,.82); text-align: center; backdrop-filter: blur(16px); }
+.moyu-footer { display: grid; gap: 8px; margin: auto calc(50% - 50vw) 0; padding: 20px 24px; border-top: 1px solid rgba(229,163,79,.22); color: rgba(255,255,255,.82); background: rgba(4,12,23,.82); text-align: center; backdrop-filter: blur(16px); }
 .moyu-footer strong { color: var(--moyu-text); }
 .moyu-footer span { color: var(--moyu-muted); }
 .siteleads-root { display: none !important; }

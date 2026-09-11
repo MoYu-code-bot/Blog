@@ -16,6 +16,8 @@ assert.ok(navigation.includes('<details>'));
 assert.ok(css.includes('.moyu-mega-menu.moyu-glass'));
 assert.ok(css.includes('width: min(590px, 64vw)'));
 assert.ok(css.includes('background: rgba(7, 15, 27, .88)'));
+assert.ok(css.includes('flex-direction: column'));
+assert.ok(css.includes('margin: auto calc(50% - 50vw) 0'));
 assert.ok(functions.includes("'community' =>"));
 assert.ok(functions.includes("'_wp_page_template', 'page-content-hub.php'"));
 assert.ok(interaction.includes("event.key === 'Escape'"));

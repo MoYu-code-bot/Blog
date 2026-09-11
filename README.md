@@ -174,11 +174,15 @@ moyu-theme/
 git clone https://github.com/MoYu-code-bot/Blog.git
 ```
 
-当前 FB 预测试主题版本为 `1.20.0-beta1`。安装目录仍为 `moyu-theme-FB`，只在 `beta1` 分支发布，不覆盖 `main` 稳定版。
+当前 FB 预测试主题版本为 `1.20.1-beta1`。安装目录仍为 `moyu-theme-FB`，只在 `beta1` 分支发布，不覆盖 `main` 稳定版。
 
 ---
 
 ## 📝 更新记录
+
+### 1.20.1
+
+- 页脚改为粘性页脚布局：短页面贴住视口底部，长页面自然跟随内容结尾，不遮挡正文
 
 ### 1.20.0
 
