@@ -16,11 +16,13 @@ add_action('after_setup_theme', 'moyu_glass_setup');
 function moyu_glass_assets(): void
 {
     $version = wp_get_theme()->get('Version');
+    wp_enqueue_style('dashicons');
     wp_enqueue_style('moyu-glass', get_stylesheet_uri(), [], $version);
     $background = get_theme_mod('moyu_background_image', get_theme_file_uri('assets/images/sunset-hero.png'));
     wp_add_inline_style('moyu-glass', ':root{--moyu-background-image:url(' . wp_json_encode(esc_url_raw($background)) . ');}');
     wp_enqueue_script('moyu-glass-intro', get_theme_file_uri('assets/js/intro.js'), [], $version, true);
     wp_enqueue_script('moyu-glass-glow', get_theme_file_uri('assets/js/mouse-glow.js'), [], $version, true);
+    wp_enqueue_script('moyu-glass-navigation', get_theme_file_uri('assets/js/navigation.js'), [], $version, true);
 }
 add_action('wp_enqueue_scripts', 'moyu_glass_assets');
 
@@ -64,6 +66,58 @@ function moyu_glass_about_url(): string
     $page = get_page_by_path('about');
     return $page ? get_permalink($page) : home_url('/about/');
 }
+
+function moyu_glass_hubs(): array
+{
+    return [
+        'technical-notes' => ['title' => '技术笔记', 'description' => '记录编程实践、工具使用与技术成长。', 'category' => '技术笔记'],
+        'ai-exploration' => ['title' => 'AI 探索', 'description' => '关注人工智能的发展、工具与实际应用。', 'category' => 'AI 探索'],
+        'site-building' => ['title' => '建站记录', 'description' => '整理从域名、服务器到 WordPress 的建站过程。', 'category' => '建站记录'],
+        'life-essays' => ['title' => '生活随笔', 'description' => '收藏生活片段、阅读感想与日常思考。', 'category' => '生活随笔'],
+        'community' => ['title' => '社区', 'description' => '交流与分享空间正在建设中，后续将在这里添加互动功能。', 'category' => ''],
+    ];
+}
+
+function moyu_glass_hub_url(string $slug): string
+{
+    $page = get_page_by_path($slug, OBJECT, 'page');
+    return $page ? get_permalink($page) : home_url('/' . $slug . '/');
+}
+
+function moyu_glass_ensure_hub_pages(): void
+{
+    if (!current_user_can('manage_options') || get_option('moyu_glass_hub_pages_version') === '1.20.0') {
+        return;
+    }
+
+    foreach (moyu_glass_hubs() as $slug => $hub) {
+        if ($hub['category'] && !term_exists($hub['category'], 'category')) {
+            wp_insert_term($hub['category'], 'category');
+        }
+
+        $page = get_page_by_path($slug, OBJECT, 'page');
+        $page_id = $page ? $page->ID : wp_insert_post([
+            'post_type' => 'page',
+            'post_status' => 'publish',
+            'post_title' => $hub['title'],
+            'post_name' => $slug,
+            'post_content' => $hub['description'],
+        ]);
+
+        if (is_wp_error($page_id) || !$page_id) {
+            return;
+        }
+
+        if ($page && $page->post_status !== 'publish') {
+            wp_update_post(['ID' => $page_id, 'post_status' => 'publish']);
+        }
+
+        update_post_meta((int) $page_id, '_wp_page_template', 'page-content-hub.php');
+    }
+
+    update_option('moyu_glass_hub_pages_version', '1.20.0', false);
+}
+add_action('admin_init', 'moyu_glass_ensure_hub_pages');
 
 function moyu_glass_archive_size(WP_Query $query): void
 {

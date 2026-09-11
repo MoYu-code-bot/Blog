@@ -1,10 +1,13 @@
 # 🌇 Moyu Theme
 
+> [!WARNING]
+> 当前为 `beta1` 预测试分支，仅用于验证新导航、独立分类页面与社区页面。正式站点请继续使用 `main` 分支稳定版。
+
 一款用于个人博客的 WordPress 夕阳液态玻璃主题。
 
 Moyu Theme 使用全屏晚霞背景、低模糊半透明玻璃面板、双栏首页和文章时间线，适合记录技术、生活与持续成长。
 
-[🌐 在线博客](https://www.moyu.loan/) · [📦 下载源码](https://github.com/MoYu-code-bot/Blog/archive/refs/heads/main.zip)
+[🌐 在线博客](https://www.moyu.loan/) · [🧪 下载 Beta 主题 ZIP](https://github.com/MoYu-code-bot/Blog/raw/refs/heads/beta1/moyu-theme-FB-beta1.zip) · [📦 下载 beta1 分支源码](https://github.com/MoYu-code-bot/Blog/archive/refs/heads/beta1.zip)
 
 ![Moyu Theme 主题预览](screenshot.png)
 
@@ -83,6 +86,12 @@ Moyu Theme 使用全屏晚霞背景、低模糊半透明玻璃面板、双栏首
 1. 新建标题为“关于我”的页面。
 2. 将固定链接别名设为 `about`。
 3. 使用 WordPress 页面编辑器填写个人信息并发布。
+
+### 分类与社区页面
+
+主题启用后，管理员首次打开后台时会自动检查并创建“技术笔记”“AI 探索”“建站记录”“生活随笔”和“社区”页面；已有相同固定链接的页面会直接复用，不会重复创建。
+
+发布文章时，把文章加入对应的同名分类，文章就会出现在相应专题页面。“社区”是独立页面，可直接使用 WordPress 页面编辑器添加后续内容。
 
 ### 编辑主题内容
 
@@ -165,11 +174,29 @@ moyu-theme/
 git clone https://github.com/MoYu-code-bot/Blog.git
 ```
 
-当前主题版本为 `1.18.10`。主题样式版本位于 `style.css`，WordPress 会使用版本号刷新前端资源缓存。
+当前 FB 预测试主题版本为 `1.20.0-beta1`。安装目录仍为 `moyu-theme-FB`，只在 `beta1` 分支发布，不覆盖 `main` 稳定版。
 
 ---
 
 ## 📝 更新记录
+
+### 1.20.0
+
+- 为技术笔记、AI 探索、建站记录、生活随笔和社区创建独立页面
+- 分类入口改用页面永久链接，不再调用站内搜索
+- 删除归档入口，将灵感更名为社区
+- 分类菜单支持点击空白处或按 Esc 收起
+
+### 1.19.1
+
+- 缩小分类展开面板、图标和文字间距
+- 加深分类面板背景，避免与页面正文重叠时字迹不清
+
+### 1.19.0
+
+- 新增“分类、归档、灵感”导航入口
+- 新增技术笔记、AI 探索、建站记录和生活随笔分类面板
+- 使用 WordPress 原生 `details` 交互，并适配键盘和移动端
 
 ### 1.18.10
 

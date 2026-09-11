@@ -1,9 +1,9 @@
 /*
-Theme Name: Moyu Theme
+Theme Name: Moyu Theme FB
 Theme URI: https://www.moyu.loan/
 Author: Moyu
 Description: 夕阳晚霞液态玻璃个人博客主题。
-Version: 1.18.10
+Version: 1.20.0-beta1
 Requires at least: 6.0
 Requires PHP: 7.4
 Text Domain: moyu-theme
@@ -127,7 +127,7 @@ body.moyu-intro-lock { overflow: hidden; }
   z-index: 20;
   top: 18px;
   display: grid;
-  grid-template-columns: minmax(150px, 1fr) auto minmax(170px, 1fr);
+  grid-template-columns: minmax(210px, 1fr) auto minmax(180px, 1fr);
   align-items: center;
   gap: 24px;
   width: 100%;
@@ -135,12 +135,40 @@ body.moyu-intro-lock { overflow: hidden; }
   padding: 8px 18px;
   border-radius: 18px;
 }
-.moyu-brand { min-width: 150px; color: #f3d59d; font-family: "Noto Serif SC", serif; font-size: 1.4rem; font-weight: 700; }
+.moyu-brand { display: grid; min-width: 210px; color: #f3d59d; font-family: "Noto Serif SC", serif; }
+.moyu-brand strong { font-size: 1.35rem; }
+.moyu-brand span { margin-top: 2px; color: var(--moyu-muted); font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif; font-size: .72rem; font-weight: 400; }
 .moyu-nav { justify-self: center; }
 .moyu-nav ul { display: flex; gap: 8px; margin: 0; padding: 0; list-style: none; }
-.moyu-nav a { display: block; padding: 12px 22px 10px; color: var(--moyu-muted); }
-.moyu-nav a:hover, .moyu-nav a[aria-current="page"] { color: var(--moyu-gold); }
+.moyu-nav li { position: relative; }
+.moyu-nav a, .moyu-nav summary { display: block; padding: 12px 15px 10px; color: var(--moyu-muted); white-space: nowrap; cursor: pointer; }
+.moyu-nav summary { list-style: none; }
+.moyu-nav summary::-webkit-details-marker { display: none; }
+.moyu-nav summary::after { display: inline-block; margin-left: 7px; border: 4px solid transparent; border-top-color: currentColor; vertical-align: -3px; content: ""; }
+.moyu-nav a:hover, .moyu-nav summary:hover, .moyu-nav details[open] > summary, .moyu-nav a[aria-current="page"] { color: var(--moyu-gold); }
 .moyu-nav a[aria-current="page"] { border-bottom: 2px solid var(--moyu-gold); }
+.moyu-category-menu details[open] > summary::before { position: absolute; right: 15px; bottom: 4px; left: 15px; height: 2px; background: var(--moyu-gold); box-shadow: 0 0 16px rgba(229,163,79,.75); content: ""; }
+.moyu-mega-menu.moyu-glass {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(115px, 1fr));
+  width: min(590px, 64vw);
+  padding: 7px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: rgba(7, 15, 27, .88);
+  backdrop-filter: blur(10px);
+  transform: translateX(-50%);
+}
+.moyu-mega-menu::before { position: absolute; top: 0; left: 28%; width: 44%; height: 1px; background: #f1bd78; box-shadow: 0 0 14px #e5a34f; content: ""; }
+.moyu-nav .moyu-mega-menu a { display: grid; grid-template-columns: 28px 1fr; gap: 1px 7px; padding: 7px; border-right: 1px solid rgba(255,255,255,.1); white-space: normal; }
+.moyu-nav .moyu-mega-menu a:last-child { border-right: 0; }
+.moyu-nav .moyu-mega-menu a:hover { border-radius: 12px; background: rgba(229,163,79,.08); }
+.moyu-mega-menu .dashicons { grid-row: 1 / 3; align-self: center; width: 24px; height: 24px; color: var(--moyu-gold); font-size: 24px; }
+.moyu-mega-menu strong { color: #f3d59d; font-family: "Noto Serif SC", serif; font-size: .9rem; }
+.moyu-mega-menu small { color: var(--moyu-muted); font-size: .64rem; line-height: 1.2; }
 .moyu-search { justify-self: end; }
 .moyu-search input { width: 180px; padding: 10px 14px; border: 1px solid rgba(255,255,255,.12); border-radius: 10px; color: var(--moyu-text); background: rgba(255,255,255,.05); font: inherit; }
 .moyu-search input::placeholder { color: #9d9b98; }
@@ -224,6 +252,10 @@ body.moyu-intro-lock { overflow: hidden; }
 .moyu-button { display: inline-block; padding: 11px 25px; border: 1px solid var(--moyu-gold); border-radius: 8px; color: var(--moyu-gold); }
 .moyu-button:hover { color: #101721; background: var(--moyu-gold); }
 .moyu-empty { padding: 42px 0; color: var(--moyu-muted); }
+.moyu-hub-intro { margin-bottom: 24px; padding: clamp(28px, 4vw, 54px); }
+.moyu-hub-kicker { color: var(--moyu-gold); font-size: .76rem; font-weight: 700; letter-spacing: .18em; }
+.moyu-hub-intro h1 { margin: 10px 0 12px; color: #f3d59d; font-family: "Noto Serif SC", serif; font-size: clamp(2rem, 5vw, 3.4rem); }
+.moyu-hub-intro .moyu-article-content { max-width: 720px; }
 .moyu-all-posts { display: block; width: fit-content; margin: 28px 0 0 auto; color: var(--moyu-gold); }
 .moyu-pagination { margin-top: 28px; }
 .moyu-pagination .nav-links { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -264,8 +296,15 @@ body.moyu-intro-lock { overflow: hidden; }
   .moyu-home { padding: 26px 14px 0; background-attachment: scroll; }
   .moyu-header { position: static; grid-template-columns: 1fr; gap: 4px; margin-bottom: 24px; }
   .moyu-brand, .moyu-nav, .moyu-search { justify-self: center; }
+  .moyu-nav { width: 100%; }
   .moyu-search input { width: min(280px, 75vw); }
-  .moyu-nav a { padding-inline: 14px; }
+  .moyu-nav ul { flex-wrap: wrap; justify-content: center; }
+  .moyu-nav a, .moyu-nav summary { padding-inline: 10px; }
+  .moyu-category-menu { position: static; flex-basis: 100%; }
+  .moyu-category-menu > details > summary { width: fit-content; margin: 0 auto; }
+  .moyu-mega-menu.moyu-glass { position: static; grid-template-columns: 1fr; width: 100%; margin-top: 6px; transform: none; }
+  .moyu-nav .moyu-mega-menu a { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .moyu-nav .moyu-mega-menu a:last-child { border-bottom: 0; }
   .moyu-layout { grid-template-columns: 1fr; }
   .moyu-profile, .moyu-posts { padding: 28px 22px; }
   .moyu-article { grid-template-columns: 1fr; gap: 20px; }
